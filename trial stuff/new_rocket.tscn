@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://biayhmq5bo8gf"]
+
+[ext_resource type="Script" path="res://trial stuff/new_rocket.gd" id="1_5hd15"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mg55v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhpsc"]
+size = Vector3(1.15137, 1, 1)
+
+[node name="new_rocket" type="CharacterBody3D"]
+process_physics_priority = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824004, 0)
+motion_mode = 1
+script = ExtResource("1_5hd15")
+
+[node name="rocket_body" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.38438, 0, 0, 0, -6.52429e-08, -0.603486, 0, 1.49258, -2.63792e-08, 0, 0.239528, 0)
+mesh = SubResource("CylinderMesh_mg55v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.239528, 1.39022)
+shape = SubResource("BoxShape3D_yhpsc")

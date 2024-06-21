@@ -1,0 +1,135 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdl1ryuxixv0r"]
+
+[ext_resource type="Script" path="res://agents/old_stuff/firing_solution_parameters.gd" id="1_etkpv"]
+
+[node name="Firing Solution Parameters" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_etkpv")
+
+[node name="Title" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 99.0
+offset_right = 584.0
+offset_bottom = 139.0
+scale = Vector2(1.93237, 4.2736)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Title"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Title/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.686275, 0.678431, 1)
+theme_override_font_sizes/font_size = 14
+text = "Firing Solution Parameters"
+
+[node name="Choices" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 53.0
+offset_right = 266.0
+offset_bottom = 102.0
+scale = Vector2(1.93237, 4.2736)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Choices"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Choices/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.85098, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "Click to set a parameter"
+
+[node name="heading" type="Button" parent="Choices/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "in degrees, to the enarest degree
+0 is north
+270 is west"
+theme_override_font_sizes/font_size = 10
+text = "Heading"
+alignment = 0
+
+[node name="pitch" type="Button" parent="Choices/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "To the nearest degree.
+90 degrees is vertical."
+theme_override_font_sizes/font_size = 10
+text = "Pitch"
+alignment = 0
+
+[node name="bombSize" type="Button" parent="Choices/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Three sizes:
+ 1 = small
+2 = medium
+3 = very large"
+theme_override_font_sizes/font_size = 10
+text = "Bomb Size"
+alignment = 0
+
+[node name="waitTime" type="Button" parent="Choices/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Time before next bomb release,  in seconds to the nearest second"
+theme_override_font_sizes/font_size = 10
+text = "Wait time"
+alignment = 0
+
+[node name="Firign Order" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 3.00001
+offset_right = 1103.0
+offset_bottom = 43.0
+scale = Vector2(1.93237, 4.2736)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Firign Order"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Firign Order/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.787965, 0.218594, 0.738368, 1)
+text = "Firing Order"
+
+[node name="Start Your Engines" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 346.0
+offset_right = 651.0
+offset_bottom = 386.0
+scale = Vector2(2.41121, 3.00219)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start Your Engines"]
+layout_mode = 2
+
+[node name="Countdown" type="Button" parent="Start Your Engines/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Start Count Down"
+
+[node name="Cancel and go back" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 481.0
+offset_right = 683.0
+offset_bottom = 521.0
+scale = Vector2(2.41121, 3.00219)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cancel and go back"]
+layout_mode = 2
+
+[node name="CancelBack" type="Button" parent="Cancel and go back/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Cancel and return"
+
+[connection signal="pressed" from="Choices/VBoxContainer/heading" to="." method="_on_heading_pressed"]
+[connection signal="pressed" from="Choices/VBoxContainer/pitch" to="." method="_on_pitch_pressed"]
+[connection signal="pressed" from="Choices/VBoxContainer/bombSize" to="." method="_on_bomb_size_pressed"]
+[connection signal="pressed" from="Choices/VBoxContainer/waitTime" to="." method="_on_wait_time_pressed"]
+[connection signal="pressed" from="Start Your Engines/VBoxContainer/Countdown" to="." method="_on_countdown_pressed"]
+[connection signal="pressed" from="Cancel and go back/VBoxContainer/CancelBack" to="." method="_on_cancel_back_pressed"]

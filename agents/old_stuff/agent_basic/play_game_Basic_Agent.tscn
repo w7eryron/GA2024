@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cug4c6xwcsv2s"]
+
+[ext_resource type="Script" path="res://agents/old_stuff/agent_basic/play_game_Basic_Agent.gd" id="1_rolhi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rolhi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

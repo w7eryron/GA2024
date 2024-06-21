@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://cva1iog5nybtp"]
+
+[ext_resource type="Script" path="res://agents/old_stuff/menu_enter_solution.gd" id="1_cebma"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_cebma")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 31.0
+offset_top = 100.0
+offset_right = 76.0
+offset_bottom = 120.0
+scale = Vector2(1.68615, 0.899529)
+tooltip_text = "Choose an option"
+alignment = 1
+
+[node name="CancelAndReturn" type="Button" parent="."]
+offset_left = 54.0
+offset_top = 447.0
+offset_right = 204.0
+offset_bottom = 478.0
+scale = Vector2(1.0465, 0.925234)
+text = "Cancel and Return"
+
+[node name="SaveAndReturn" type="Button" parent="."]
+offset_left = 54.0
+offset_top = 492.0
+offset_right = 189.0
+offset_bottom = 523.0
+scale = Vector2(1.27171, 0.902463)
+text = "Save and Return"
+
+[node name="BeginSolution" type="Button" parent="."]
+offset_left = 51.0
+offset_top = 541.0
+offset_right = 171.0
+offset_bottom = 572.0
+scale = Vector2(1.20696, 0.978391)
+text = "Begin Solution"
+
+[node name="Help Notes" type="Button" parent="."]
+offset_left = 55.0
+offset_top = 407.0
+offset_right = 149.0
+offset_bottom = 438.0
+text = "Help Notes"
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CancelAndReturn" to="." method="_on_cancel_and_return_pressed"]
+[connection signal="pressed" from="SaveAndReturn" to="." method="_on_save_and_return_pressed"]
+[connection signal="pressed" from="BeginSolution" to="." method="_on_begin_solution_pressed"]
+[connection signal="pressed" from="Help Notes" to="." method="_on_help_notes_pressed"]

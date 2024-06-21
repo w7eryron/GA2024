@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://unr1136ma1oa"]
+
+[ext_resource type="Script" path="res://agents/old_stuff/menu_play.gd" id="1_qomcf"]
+
+[node name="Menu_play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qomcf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 119.0
+offset_right = 493.0
+offset_bottom = 255.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play Game" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Game"
+
+[node name="Run Agent" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Run Agent"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Return to Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play Game" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Run Agent" to="." method="_on_run_agent_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Return to Main Menu" to="." method="_on_return_to_main_menu_pressed"]

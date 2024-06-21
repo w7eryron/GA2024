@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://o0u2hvewe2r1"]
+
+[ext_resource type="PackedScene" uid="uid://biayhmq5bo8gf" path="res://trial stuff/new_rocket.tscn" id="1_wppxx"]
+[ext_resource type="Texture2D" uid="uid://cxtjebi8nw6s7" path="res://starting_folder/orion.PNG" id="2_uobvp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bmjlr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_p1tok"]
+sky_material = SubResource("ProceduralSkyMaterial_bmjlr")
+
+[sub_resource type="Environment" id="Environment_nc4x0"]
+background_mode = 2
+sky = SubResource("Sky_p1tok")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0aig"]
+albedo_texture = ExtResource("2_uobvp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_80q58"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_utxrh"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="space" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nc4x0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="new_rocket" parent="." instance=ExtResource("1_wppxx")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81545, 1.44687, 4.47136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045974, 0.183797, -0.0157728)
+material_override = SubResource("StandardMaterial3D_u0aig")
+mesh = SubResource("PlaneMesh_80q58")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_utxrh")

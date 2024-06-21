@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh7befupv6cku"]
+
+[ext_resource type="Script" path="res://trial stuff/textingInput.gd" id="1_dl7r7"]
+
+[node name="testingInput" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dl7r7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 35.0
+offset_right = 496.0
+offset_bottom = 100.0
+text = "test copied here: 
+"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 37.0
+offset_right = 150.063
+offset_bottom = 68.0
+tooltip_text = "only enter integers"
+clear_button_enabled = true
+
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

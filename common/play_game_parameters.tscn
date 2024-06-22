@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b84xadd0piatj"]
+[gd_scene load_steps=14 format=3 uid="uid://b84xadd0piatj"]
 
 [ext_resource type="Texture2D" uid="uid://cxtjebi8nw6s7" path="res://starting_folder/orion.PNG" id="1_vj1un"]
 [ext_resource type="Script" path="res://common/play_game_parameters.gd" id="1_y16ul"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbxvt865gu8sl" path="res://starting_folder/cavern.tscn" id="4_afjda"]
 [ext_resource type="PackedScene" uid="uid://d3805xpg8ii4j" path="res://common/landing_zone.tscn" id="5_mjs82"]
 [ext_resource type="PackedScene" uid="uid://7ic7lkuu0plq" path="res://common/power_node.tscn" id="6_w0tbu"]
+[ext_resource type="PackedScene" uid="uid://6r0aogqqtd12" path="res://mountains.tscn" id="7_ffmfp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6f0ck"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -169,3 +170,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5907, 2, -27.2486)
 
 [node name="powerNode22" parent="." instance=ExtResource("6_w0tbu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0817, 2, 2.03281)
+
+[node name="mountains" parent="." instance=ExtResource("7_ffmfp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

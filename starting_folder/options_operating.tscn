@@ -34,7 +34,7 @@ script = ExtResource("1_48moy")
 [node name="Title of Scene" type="MarginContainer" parent="."]
 layout_mode = 2
 anchor_left = 0.164059
-anchor_top = 0.0200675
+anchor_top = 0.0200674
 anchor_right = 0.164059
 anchor_bottom = 0.0200674
 offset_left = 12.0037
@@ -167,6 +167,7 @@ layout_mode = 2
 text = "Target Site (x,1,z):"
 
 [node name="TargetEdit_x" type="LineEdit" parent="Env Options/VBoxContainer/Target Site"]
+layout_mode = 0
 offset_left = 156.0
 offset_top = 3.0
 offset_right = 239.063
@@ -175,6 +176,7 @@ tooltip_text = "only enter integers"
 clear_button_enabled = true
 
 [node name="TargetEdit_z" type="LineEdit" parent="Env Options/VBoxContainer/Target Site"]
+layout_mode = 0
 offset_left = 250.007
 offset_top = 3.13907
 offset_right = 333.07

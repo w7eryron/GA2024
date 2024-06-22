@@ -19,6 +19,10 @@ config/icon="res://starting_folder/icon.svg"
 
 Global="*res://common/global_variables.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+
 [input]
 
 pitch_down={

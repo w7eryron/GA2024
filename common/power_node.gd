@@ -11,6 +11,7 @@ func _process(delta):
 	
 
 func _on_body_entered(body):
-	queue_free()
-	Global.bombs = Global.bombs + 10
+	if(body == $"../rocket"):
+		queue_free()
+		Global.bombs = Global.bombs + 10
 

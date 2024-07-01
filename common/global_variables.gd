@@ -16,4 +16,6 @@ var rocketMass = 22000
 var loadMass = 1000 
 var altitude = 1
 var speed = 0
-var bombs = 6
+var bombs = 60
+var turret_fire = false
+var flying = false

@@ -68,13 +68,15 @@ scale = Vector2(7.81201, 15.1146)
 text = "parameters"
 
 [node name="rocket" parent="." instance=ExtResource("3_poo08")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.907825, -0.0185995)
 collision_layer = 2
+contact_monitor = true
 
 [node name="deckFloor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="deckFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.189856, -0.325937, 0.181127)
+layers = 17
 material_override = SubResource("StandardMaterial3D_mab5l")
 mesh = SubResource("BoxMesh_kvckq")
 skeleton = NodePath("../..")
@@ -172,4 +174,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5907, 2, -27.2486)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0817, 2, 2.03281)
 
 [node name="mountains" parent="." instance=ExtResource("7_ffmfp")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.197837, 0)
+
+[connection signal="body_entered" from="rocket" to="." method="_on_rocket_body_entered"]

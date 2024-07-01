@@ -10,6 +10,7 @@ var landing_site = Global.landing_site
 var launch_site = Global.launch_site
 var rocket_position = Global.rocket_position
 var rocket_speed = Global.rocket_velocity
+var turret_can_fire = Global.turret_fire
 
 @onready var twist_pivot := $TwistPvot
 @onready var pitch_pivot = $TwistPvot/PitchPivot
@@ -23,30 +24,46 @@ var rocket_speed = Global.rocket_velocity
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Feelers.disabled = true
+	Global.flying = false
 	await get_tree().create_timer(3.0).timeout
-	# below is jsut a sample autonomous mode launch
-	explode()
-	apply_central_force(Vector3.UP * 80.0  * bombTime)
-	await get_tree().create_timer(4.95).timeout
-	explode()
-	apply_central_force(Vector3.UP * 60.0  * bombTime)
+	# below is just a sample autonomous mode launch
+	#explode()
+	#apply_central_force(Vector3.UP * 80.0  * bombTime)
+	#await get_tree().create_timer(4.95).timeout
+	#explode()
+	#apply_central_force(Vector3.UP * 60.0  * bombTime)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	check_input()
+	check_input()	# checking for rotating the tank turret
 	#check_kablooey()
 	# handling bomb drops keys
-	if Input.is_key_pressed(KEY_Y):
-		explode()
-		apply_central_force(Vector3.UP * 200.0 * delta * bombTime)
-	if Input.is_key_pressed(KEY_U):
-		explode()
-		apply_central_force(Vector3.UP * 300.0 * delta * bombTime)
-	if Input.is_key_pressed(KEY_I):
+	if Input.is_action_just_pressed("bomb1"):
 		explode()
 		apply_central_force(Vector3.UP * 800.0 * delta * bombTime)
-		
+	if Input.is_action_just_pressed("bomb2"):
+		explode()
+		apply_central_force(Vector3.UP * 2000.0 * delta * bombTime)
+	if Input.is_action_just_pressed("bomb3"):
+		explode()
+		apply_central_force(Vector3.UP * 8000.0 * delta * bombTime)
+	if Input.is_action_just_pressed("turret_can_fire"):		# the "t" key6
+		turret_can_fire = !turret_can_fire
+		$Feelers.disabled = !$Feelers.disabled
+		Global.flying = !Global.flying
+	
+	if (Input.is_action_just_pressed("rocket_launch")):
+		print("l key pressed")
+		if(abs(rocket_position.x) >=1 || abs(rocket_position.z) >= 1):
+			kablooey()
+		else:
+			explode()
+			apply_central_force(Vector3.UP * 80.0  * 20)
+		#await get_tree().create_timer(1.95).timeout
+		Global.flying = true
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
@@ -61,18 +78,27 @@ func _process(delta):
 	$land_location.text = str(round(Global.landing_site))
 	$my_bombs.text = str(round(Global.bombs))
 	
-	if(rocket_position.distance_to(Global.landing_site)<=1.0):
-		get_tree().change_scene_to_file("res://common/safe_landing.tscn")
+	#if(rocket_position.distance_to(Global.landing_site)<=1.0):
+		#await get_tree().create_timer(1.0).timeout
+		#get_tree().change_scene_to_file("res://common/safe_landing.tscn")
 	
 	#if(rocket_position.y < 0):
 		#kablooey()
 		
-	# handling pitch and roll
+	 #handling height of tank when turret can fire
+	#if turret_can_fire:
+		#if rocket_position.y > 2:
+			#explode()
+		#else:
+			#kablooey()
+		
+	# handling tank fwd/back and lef/right
 	var input = Vector3.ZERO
-	input.x = Input.get_axis("roll_left", "roll_right")
+	input.x = Input.get_axis("roll_left", "roll_right")		#variable names are messed up, l/r & f/b
 	input.z = Input.get_axis("pitch_down", "pitch_up")
-	apply_central_force(twist_pivot.basis* input*1200.0 * delta)
+	apply_central_force(basis* input*1200.0 * delta)
 	
+	# handling camera pitch and roll
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(
@@ -82,9 +108,10 @@ func _process(delta):
 
 func	explode():
 	fire.emitting = true
+	$Fire3.emitting = true
 	kaboom_1.play(true)
 	smoke.emitting = true
-	#Global.bombs -=  1
+	Global.bombs -=  1
 	if (Global.bombs <= 0):
 		kablooey()
 	return true
@@ -102,12 +129,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func check_input():
 	if Input.is_action_pressed("ui_left"):
-		rotate_y(deg_to_rad(-.3))
-		Global.heading = get_rotation_degrees().y
+		$turret.rotate_y(deg_to_rad(.3))
+		Global.heading = $turret.get_rotation_degrees().y
 	elif Input.is_action_pressed("ui_right"):
-		rotate_y(deg_to_rad(.3))
-		Global.heading = get_rotation_degrees().y
+		$turret.rotate_y(deg_to_rad(-.3))
+		Global.heading = $turret.get_rotation_degrees().y
 
 func check_kablooey():
-	if (position.y < 10 && explode()):
+	if (position.y < 2 && explode()):
 		kablooey()
+

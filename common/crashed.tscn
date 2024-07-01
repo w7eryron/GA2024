@@ -44,11 +44,11 @@ Either you fired your tank gun below 10m
 or
 you launched someplace other than (0,1,0)
 or
-you hit a mountain
+you \"landed\" someplace other than the landing site
 or
 you landed with too much speed
 or
-you ran out of power nodes"
+you ran out of power nodules"
 horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="."]

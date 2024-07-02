@@ -1,4 +1,4 @@
-This is a task in progress.  
+This is a task in progress.  And, yes, it has a lot of messy code. This is not yet ready for prime time. 
 It is to create a game that contestants in Science Olympiad can enter the event called "Game Agent" .. 
 ... and they are tasked with creating a game agent that can beat the game. 
 The current Event Description will be in a second file on this git project. 
